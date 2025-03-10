@@ -46,7 +46,10 @@ def ingest_and_prepare_vector_store():
     loader = CSVLoader(file_path='data.csv')
     documents = loader.load()
 
-    vector_store = Chroma(embedding_function=embeddings)
+    vector_store = Chroma(
+            collection_name="pubmed_vascular",
+            embedding_function=embeddings, 
+            persist_directory="./pubmed_db")
     vector_store.add_documents(documents=documents)
 
     return vector_store
