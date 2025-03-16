@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . /app
 
 RUN pip install --upgrade pip
-RUN pip install streamlit langchain langchain-community langchain-chroma langchain-graph-retriever pandas sentence-transformers chromadb openai
+RUN pip install streamlit langchain langchain-community langchain-chroma langchain-graph-retriever pandas sentence-transformers chromadb openai streamlit-authenticator
 
 EXPOSE 8501
 
