@@ -19,7 +19,8 @@ dependencies = [
     "sentence-transformers (>=3.4.1,<4.0.0)",
     "chromadb (>=0.6.3,<0.7.0)",
     "openai (>=1.66.3,<2.0.0)",
-    "streamlit-authenticator (>=0.4.2,<0.5.0)"
+    "streamlit-authenticator (>=0.4.2,<0.5.0)",
+    "black (>=25.1.0,<26.0.0)"
 ]
 
 
