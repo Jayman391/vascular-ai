@@ -1,5 +1,5 @@
 from src.preprocess import ingest_and_prepare_vector_store
-from src.secrets import make_environment_variables
+from env import make_environment_variables
 from src.pipelines import *
 
 import warnings
