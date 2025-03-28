@@ -3,3 +3,4 @@ venv/
 pubmed_db/
 pubmed_data/
 src/secrets.py
+.env
