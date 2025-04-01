@@ -1,0 +1,31 @@
+[project]
+name = "streamlit-graphrag"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Jason Lobell",email = "jasonlobell123@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12, <4.0"
+dependencies = [
+    "streamlit (>=1.43.2,<2.0.0)",
+    "langchain (>=0.3.20,<0.4.0)",
+    "langchain-community (>=0.3.19,<0.4.0)",
+    "langchain-chroma (>=0.2.2,<0.3.0)",
+    "langchain-graph-retriever (>=0.6.1,<0.7.0)",
+    "langchain-openai (>=0.3.9,<0.4.0)",
+    "langsmith (>=0.3.15,<0.4.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "sentence-transformers (>=3.4.1,<4.0.0)",
+    "chromadb (>=0.6.3,<0.7.0)",
+    "openai (>=1.66.3,<2.0.0)",
+    "streamlit-authenticator (>=0.4.2,<0.5.0)",
+    "black (>=25.1.0,<26.0.0)",
+    "load-dotenv (>=0.1.0,<0.2.0)",
+    "jq (>=1.8.0,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

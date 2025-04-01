@@ -1,3 +1,5 @@
 venv/
 .streamlit/
 pubmed_db/
+pubmed_data/
+env.sh
