@@ -2,5 +2,4 @@ venv/
 .streamlit/
 pubmed_db/
 pubmed_data/
-src/secrets.py
-src/env.py
+env.sh

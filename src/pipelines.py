@@ -4,14 +4,18 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langsmith import traceable
-
-from langchain.chat_models import init_chat_model
+from langchain_community.chat_models import ChatOpenAI
 from langchain_chroma import Chroma
 
-llm = init_chat_model("gpt-3.5-turbo", model_provider="openai")
+import os
+import warnings
 
+warnings.filterwarnings("ignore")
+
+llm = ChatOpenAI(model="gpt-3.5-turbo", api_key=os.environ["OPENAI_API_KEY"])
 
 from src.preprocess import format_docs
+
 
 # ------------------- Langchain Pipelines ---------------------------------- #
 
@@ -19,9 +23,9 @@ from src.preprocess import format_docs
 def rag_pipeline(vectorstore: Chroma):
 
     retriever = vectorstore.as_retriever(
-        search_type="mmr", search_kwargs={"k": 6, "lambda_mult" : 0.2}
+        search_type="mmr",
+        search_kwargs={'k': 5, 'fetch_k': 50}
     )
-
     prompt = ChatPromptTemplate.from_template(
         """Answer the question based only on the context provided.
         Return your answer as well as the papers cited and their authors.
@@ -126,10 +130,10 @@ def subquestions_chain():
         answer the original research question. Provide citations for each source used.
 
         Sub-Questions Context:
-        {context}
+        {subq_context}
 
         Original Answer:
-        {answer}
+        {initial_fused_ans}
 
         Research Question: {question}"""
         )

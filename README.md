@@ -30,6 +30,11 @@ jq -r '
 ' pubmed_Data/data.json > pubmed_data/data.txt
 ```
 
+load env variables
+```
+source /Users/jason/Desktop/projects/streamlit-graphrag/env.sh
+```
+
 Run locally
 
 ```sh
