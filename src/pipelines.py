@@ -20,35 +20,6 @@ from src.preprocess import format_docs
 # ------------------- Langchain Pipelines ---------------------------------- #
 
 @traceable
-def rag_pipeline(vectorstore: Chroma):
-
-    retriever = vectorstore.as_retriever(
-        search_type="mmr",
-        search_kwargs={'k': 5, 'fetch_k': 50}
-    )
-    prompt = ChatPromptTemplate.from_template(
-        """Answer the question based only on the context provided.
-        Return your answer as well as the papers cited and their authors.
-
-        Context: {context}
-
-        Question: {question}"""
-    )
-
-
-    chain = (
-        {
-            "context": retriever | format_docs,
-            "question": RunnablePassthrough(),
-        }   
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
-
-    return chain
-
-@traceable
 def graphrag_pipeline(vectorstore):
     retriever = GraphRetriever(
         store=vectorstore,
@@ -86,26 +57,6 @@ def graphrag_pipeline(vectorstore):
     return chain
 
 
-
-@traceable
-def fusion_chain():
-    fusion_prompt = ChatPromptTemplate.from_template(
-        """You are given two answers to a research question:
-
-        Direct RAG Answer:
-        {rag_ans}
-
-        Direct GraphRAG Answer:
-        {graphrag_ans}
-
-        Fuse these answers into one comprehensive, clear, and well-cited final response that leverages the strengths of both.
-        Return your answer as well as the papers cited and their authors.
-        Final Fused Answer:"""
-    )
-    chain = fusion_prompt | llm | StrOutputParser()
-
-    return chain
-
 @traceable
 def generate_subquestions_chain():
     prompt_template = ChatPromptTemplate.from_template(
@@ -133,7 +84,7 @@ def subquestions_chain():
         {subq_context}
 
         Original Answer:
-        {initial_fused_ans}
+        {initial_ans}
 
         Research Question: {question}"""
         )
@@ -148,7 +99,7 @@ def final_fusion_chain():
         """You are given two answers to a research question:
 
 Initial Fused Answer:
-{initial_fused_ans}
+{initial_ans}
 
 Sub-Question Based Answer:
 {subq_ans}

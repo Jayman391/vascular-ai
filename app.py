@@ -14,14 +14,8 @@ if __name__ == "__main__":
 
     vectorstore = ingest_and_prepare_vector_store()
 
-    rag_chain = rag_pipeline(vectorstore)
-    rag_response = rag_chain.invoke(question)
-
     graphrag_chain = graphrag_pipeline(vectorstore)
     graphrag_response = graphrag_chain.invoke(question)
-
-    full_chain = fusion_chain()
-    full_response = full_chain.invoke({"rag_ans": rag_response, "graphrag_ans": graphrag_response})
 
     subquestion_generation_chain = generate_subquestions_chain()
     subquestions = subquestion_generation_chain.invoke(question)
@@ -34,13 +28,13 @@ if __name__ == "__main__":
     subquestion_chain = subquestions_chain()
     subquestion_response = subquestion_chain.invoke({
         "subq_context": subquestion_context,
-        "initial_fused_ans" : full_response,
+        "initial_ans" : graphrag_response,
         "question": subquestions
     })
 
     final_chain = final_fusion_chain()
     final_response = final_chain.invoke({
-        "initial_fused_ans": full_response,
+        "initial_ans": graphrag_response,
         "subq_ans": subquestion_response
     })
     print(final_response)
