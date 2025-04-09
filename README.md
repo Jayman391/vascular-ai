@@ -12,9 +12,7 @@ jq -r '
       (.title // "" | strip)
     ) \(
       (.abstract // "" | strip)
-    ) \(
-      (.results // "" | strip)
-    ) \(
+    )  \(
       (.authors // []
         | map(
             (.affiliation // "" | strip) + " " +
@@ -27,7 +25,7 @@ jq -r '
     ) \(
       (.keywords // "" | strip)
     )"
-' pubmed_Data/data.json > pubmed_data/data.txt
+' pubmed_Data/data.json > pubmed_data/vascular_data.txt
 ```
 
 load env variables
