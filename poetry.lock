@@ -2262,6 +2262,25 @@ opensearch = ["langchain-community (>=0.3.14)", "opensearch-py (>=2.8.0)"]
 spacy = ["spacy (>=3.8.4)"]
 
 [[package]]
+name = "langchain-huggingface"
+version = "0.1.2"
+description = "An integration package connecting Hugging Face and LangChain"
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "langchain_huggingface-0.1.2-py3-none-any.whl", hash = "sha256:7de5cfcae32bfb6a99c084fc16176f02583a4f8d94febb6bb45bed5b34699174"},
+    {file = "langchain_huggingface-0.1.2.tar.gz", hash = "sha256:4a66d5c449298fd353bd84c9ed01f9bf4303bf2e4ffce14aab8c55c584eee57c"},
+]
+
+[package.dependencies]
+huggingface-hub = ">=0.23.0"
+langchain-core = ">=0.3.15,<0.4.0"
+sentence-transformers = ">=2.6.0"
+tokenizers = ">=0.19.1"
+transformers = ">=4.39.0"
+
+[[package]]
 name = "langchain-openai"
 version = "0.3.12"
 description = "An integration package connecting OpenAI and LangChain"
@@ -6455,4 +6474,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12, <4.0"
-content-hash = "d710906d1794c10947289b815f15cad95ee82133da14d52269b3b65929303cd8"
+content-hash = "536eb51d7b2fcd07bb0033da4e800c6c63d22dcef932f8018960a781b959e520"
