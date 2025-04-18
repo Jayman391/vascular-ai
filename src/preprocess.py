@@ -1,5 +1,5 @@
 import os
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import CSVLoader
 
@@ -7,9 +7,9 @@ from langchain_community.document_loaders import CSVLoader
 
 def ingest_and_prepare_vector_store():
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_name="sentence-transformers/all-mpnet-base-v2",
     )
-    persist_dir = "./pubmed_db"
+    persist_dir = "/Users/jason/Desktop/projects/streamlit-graphrag/pubmed_db"
     collection_name = "pubmed_vascular"
     vector_store = Chroma(
         collection_name=collection_name,

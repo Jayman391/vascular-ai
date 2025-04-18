@@ -4,3 +4,4 @@ pubmed_db/
 pubmed_data/
 env.sh
 src/__pycache__/
+.venv/
