@@ -30,12 +30,19 @@ jq -r '
 
 load env variables
 ```
-source /Users/jason/Desktop/projects/streamlit-graphrag/env.sh
+source env.sh
 ```
 
 Run locally
 
 ```sh
-poetry run python app.py --question="What are the some examples of the risk factors for atherosclerosis?"
+poetry run python app.py
 ```
 
+In a separate terminal, test functionality via cURL request
+
+```sh
+curl -X POST http://127.0.0.1:5000/query \                                            
+     -H "Content-Type: application/json" \
+     -d '{"query": "How would one treat vascular ehlers danlos syndrome?"}'
+```
