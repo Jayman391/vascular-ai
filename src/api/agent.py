@@ -1,17 +1,12 @@
 import os
-from flask import Flask, request, jsonify
-from langchain_openai import ChatOpenAI  
-from langchain_core.messages import AIMessage
 from langgraph.prebuilt import create_react_agent
-
-from src.websearch import *
-from src.dbsearch import *
-from src.rag import *
-
-# Initialize Flask app
-app = Flask(__name__)
+from src.api.websearch import *
+from src.api.dbsearch import *
+from src.api.rag import *
+from langchain_openai import ChatOpenAI  
 
 # Setup the LLM and tools
+
 llm = ChatOpenAI(model="gpt-4o-mini", api_key=os.environ["OPENAI_API_KEY"])
 tools = [arxiv_search, google_search, pubmed_rag]
 
@@ -33,33 +28,16 @@ def get_response(user_query):
         prompt=prompt,
     )
 
-    final_stream = agent.stream({"query": user_query}, stream_mode="values")
+    try : 
+        final_stream = agent.stream({"query": user_query}, stream_mode="values")
 
-    final_message = None
-    for s in final_stream:
-        final_message = s["messages"][-1]
+        final_message = None
+        for s in final_stream:
+            final_message = s["messages"][-1]
+        
+        if final_message:
+            return str(final_message) if isinstance(final_message, tuple) else str(final_message)
     
-    if final_message:
-        # Ensure we're returning a plain string instead of any complex object
-        return str(final_message) if isinstance(final_message, tuple) else str(final_message)
-    return "No response found."
-
-
-# Define the Flask route
-@app.route('/query', methods=['POST'])
-def query():
-    # Extract user query from the POST request
-    data = request.get_json()
-    user_query = data.get('query', '')
-
-    if not user_query:
-        return jsonify({"error": "No query provided"}), 400
-
-    # Get the response based on the user query
-    response = get_response(user_query)
-
-    return jsonify({"response": response})
-
-# Run the Flask app
-if __name__ == '__main__':
-    app.run(debug=True)
+    except Exception as e:
+        print(f"Error during agent processing: {e}")
+        return str(e)

@@ -1,7 +1,15 @@
 venv/
 .streamlit/
+<<<<<<< HEAD
+db/
+data/
+.env
+src/__pycache__/
+src/api/__pycache__/
+=======
 pubmed_db/
 pubmed_data/
 env.sh
 src/__pycache__/
+>>>>>>> main
 .venv/
