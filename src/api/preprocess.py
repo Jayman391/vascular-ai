@@ -87,8 +87,3 @@ def ingest_and_prepare_vector_store(data_directory="/Users/jason/Desktop/project
         load_and_add_documents_to_vector_store(all_batch_files, vector_store)
 
     return vector_store
-
-def format_docs(docs):
-    """Formats documents to return only the 'text' content."""
-    return [doc["text"] for doc in docs if isinstance(doc, dict) and "text" in doc]
-

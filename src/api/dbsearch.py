@@ -9,6 +9,10 @@ def arxiv_search(state):
     """Searches arxiv"""
     question = state
     search = ArxivAPIWrapper()
-    response = search.run(question)
-    sys.stdout.write("\nSearching Arxiv\n")
-    return response
+    try :
+        response = search.run(question)
+        sys.stdout.write("\nSearching Arxiv\n")
+        return response
+    except Exception as e:
+        sys.stdout.write(f"\nError searching Arxiv: {e}\n")
+        return str(e)

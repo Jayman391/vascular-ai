@@ -33,7 +33,6 @@ now we must do the same for our jvs data, which is a bunch of pdfs in compressed
 ```sh
 
 # append string to data/vascular_data_jvs.txt
-```sh
 # Iterate through all compressed files in data/vascular_data_jvs
 for compressed_file in data/vascular_data_jvs/*.zip; do
   # Unzip the compressed file into a temporary folder
@@ -50,8 +49,6 @@ for compressed_file in data/vascular_data_jvs/*.zip; do
   # Clean up the temporary folder
   rm -rf temp_unzipped_folder
 done
-```
-
 ```
 
 load env variables
