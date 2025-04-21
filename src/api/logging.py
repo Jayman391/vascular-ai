@@ -1,6 +1,6 @@
 from langsmith import Client
 
-def add_response( query: str,response: str,rating: int):  
+def add_response(query: str, response: str, rating: int):  
 
     client = Client()
     dataset_name = "vascular-ai"
