@@ -7,7 +7,7 @@ from langchain_community.utilities import ArxivAPIWrapper
 @tool
 def arxiv_search(state):
     """Searches arxiv"""
-    question = state
+    question = state['query']
     search = ArxivAPIWrapper()
     try :
         response = search.run(question)

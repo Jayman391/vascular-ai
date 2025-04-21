@@ -5,7 +5,7 @@ from src.api.preprocess import *
 @tool
 def pubmed_rag(state):
     """Searches PubMed using RAG"""
-    question = state
+    question = state['query']
     try:
         vectorstore = ingest_and_prepare_vector_store()
     except Exception as e:

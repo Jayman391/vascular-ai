@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 
 # Setup the LLM and tools
 
-llm = ChatOpenAI(model="gpt-4o-mini", api_key=os.environ["OPENAI_API_KEY"])
+llm = ChatOpenAI(model="gpt-4.1-nano-2025-04-14", api_key=os.environ["OPENAI_API_KEY"])
 tools = [arxiv_search, google_search, pubmed_rag]
 
 def get_response(user_query):

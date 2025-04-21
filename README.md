@@ -54,8 +54,7 @@ done
 
 load env variables
 ```
-source env.sh
-source env.sh
+export $(grep -v '^#' .env | xargs)
 ```
 
 Run locally
