@@ -1,7 +1,7 @@
 venv/
 .streamlit/
-pubmed_db/
-pubmed_data/
-env.sh
+db/
+data/
+.env
 src/__pycache__/
 .venv/

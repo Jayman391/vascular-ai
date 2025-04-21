@@ -4,9 +4,12 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import AIMessage
 from langgraph.prebuilt import create_react_agent
 
-from src.websearch import *
-from src.dbsearch import *
-from src.rag import *
+from src.api.websearch import *
+from src.api.dbsearch import *
+from src.api.rag import *
+from src.api.preprocess import *
+
+vectorstore = ingest_and_prepare_vector_store()
 
 # Initialize Flask app
 app = Flask(__name__)
