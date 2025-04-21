@@ -13,6 +13,7 @@ jq -r '
     ) \(
       (.abstract // "" | strip)
     )  \(
+    )  \(
       (.authors // []
         | map(
             (.affiliation // "" | strip) + " " +
@@ -53,6 +54,7 @@ done
 
 load env variables
 ```
+source env.sh
 source env.sh
 ```
 
